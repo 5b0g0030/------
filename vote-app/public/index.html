@@ -3,199 +3,212 @@
 <head>
     <title>投票頁面</title>  
     <style>
+        /* 設定網頁整體的字型、文字對齊方式、邊距和背景顏色 */
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #FFECEC; }
+        /* 設定按鈕的字體大小、內邊距和邊距 */
         button { font-size: 20px; padding: 10px 20px; margin: 20px; }
-        button:hover { background-color: #AAAAFF;  } /*鼠標移到按鈕上時的顏色*/
-        button:active {  background-color: #CF9E9E; }/*按下按鈕時的顏色*/
+        /* 設定當鼠標移到按鈕上時的背景顏色 */
+        button:hover { background-color: #AAAAFF; }
+        /* 設定當按下按鈕時的背景顏色 */
+        button:active {  background-color: #CF9E9E; }
+        /* 設定結果區域的字體大小和邊距 */
         #results { font-size: 24px; margin-top: 50px; }
     </style>
 </head>
 <body>
     <div id="login">
+        <!-- 登錄區域標題 -->
         <h1>莫名其妙表單登記處</h1>
+        <!-- 使用者名稱輸入框 -->
         <input type="text" id="username" placeholder="請輸入使用者名稱">
         <br/>
+        <!-- 登錄按鈕，點擊觸發login函數 -->
         <button onclick="login()">Login</button>
     </div>
     <div id="voting" style="display:none;">
         <!-- 投票選項 -->
         <h1>莫名其妙</h1>  <!-- 標題 -->
         <div id="question1">
-            <h2>咖哩要不要拌?</h2> <!-- 問題 1 標題 -->
+            <!-- 問題 1 標題 -->
+            <h2>咖哩要不要拌?</h2>
+            <!-- 問題 1 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question1" data-option="optionA">要</button>
             <button class="vote" data-question="question1" data-option="optionB">不要</button>
             <button class="vote" data-question="question1" data-option="optionC">拌一半</button>
             <div>
-                <p>要: <span id="countQ1A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>不要: <span id="countQ1B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>拌一半: <span id="countQ1C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>要: <span id="countQ1A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>不要: <span id="countQ1B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>拌一半: <span id="countQ1C">0</span></p>
             </div>
         </div>
     
         <div id="question2">
-            <h2>肉燥飯要不要拌?</h2> <!-- 問題 2 標題 -->
+            <!-- 問題 2 標題 -->
+            <h2>肉燥飯要不要拌?</h2>
+            <!-- 問題 2 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question2" data-option="optionA">要</button>
             <button class="vote" data-question="question2" data-option="optionB">不要</button>
             <button class="vote" data-question="question2" data-option="optionC">不要吃</button>
             <div>
-                <p>要: <span id="countQ2A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>不要: <span id="countQ2B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>不要吃: <span id="countQ2C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>要: <span id="countQ2A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>不要: <span id="countQ2B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>不要吃: <span id="countQ2C">0</span></p>
             </div>
         </div>
     
         <div id="question3">
-            <h2>殘酷選擇(選/當)?</h2> <!-- 問題 3 標題 -->
+            <!-- 問題 3 標題 -->
+            <h2>殘酷選擇(選/當)?</h2>
+            <!-- 問題 3 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question3" data-option="optionA">脾氣暴躁大男人</button>
             <button class="vote" data-question="question3" data-option="optionB">媽寶男</button>
             <button class="vote" data-question="question3" data-option="optionC">普信下頭男</button>
             <div>
-                <p>脾氣暴躁大男人: <span id="countQ3A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>媽寶男: <span id="countQ3B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>普信下頭男: <span id="countQ3C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>脾氣暴躁大男人: <span id="countQ3A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>媽寶男: <span id="countQ3B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>普信下頭男: <span id="countQ3C">0</span></p>
             </div>
         </div>
     
         <div id="question4">
-            <h2>半熟蛋要不要戳破?</h2> <!-- 問題 4 標題 -->
+            <!-- 問題 4 標題 -->
+            <h2>半熟蛋要不要戳破?</h2>
+            <!-- 問題 4 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question4" data-option="optionA">要</button>
             <button class="vote" data-question="question4" data-option="optionB">不要</button>
             <button class="vote" data-question="question4" data-option="optionC">超噁</button>
             <div>
-                <p>要: <span id="countQ4A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>不要: <span id="countQ4B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>超噁: <span id="countQ4C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>要: <span id="countQ4A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>不要: <span id="countQ4B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>超噁: <span id="countQ4C">0</span></p>
             </div>
         </div>
     
         <div id="question5">
-            <h2>你是哪個速食門?</h2> <!-- 問題 5 標題 -->
+            <!-- 問題 5 標題 -->
+            <h2>你是哪個速食門?</h2>
+            <!-- 問題 5 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question5" data-option="optionA">麥門</button>
             <button class="vote" data-question="question5" data-option="optionB">肯門</button>
             <button class="vote" data-question="question5" data-option="optionC">沒錢吃不起</button>
             <div>
-                <p>麥門: <span id="countQ5A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>肯門: <span id="countQ5B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>沒錢吃不起: <span id="countQ5C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>麥門: <span id="countQ5A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>肯門: <span id="countQ5B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>沒錢吃不起: <span id="countQ5C">0</span></p>
             </div>
         </div>
     
         <div id="question6">
-            <h2>火鍋要不要加芋頭?</h2> <!-- 問題 6 標題 -->
+            <!-- 問題 6 標題 -->
+            <h2>火鍋要不要加芋頭?</h2>
+            <!-- 問題 6 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question6" data-option="optionA">吃爛</button>
             <button class="vote" data-question="question6" data-option="optionB">噁心</button>
             <button class="vote" data-question="question6" data-option="optionC">狗都不吃</button>
             <div>
-                <p>吃爛: <span id="countQ6A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>噁心: <span id="countQ6B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>狗都不吃: <span id="countQ6C">0</span></p> <!-- 顯示選項 C 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>吃爛: <span id="countQ6A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>噁心: <span id="countQ6B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>狗都不吃: <span id="countQ6C">0</span></p>
             </div>
         </div>
     
         <div id="question7">
-            <h2>洗澡先什麼?</h2> <!-- 問題 7 標題 -->
+            <!-- 問題 7 標題 -->
+            <h2>洗澡先什麼?</h2>
+            <!-- 問題 7 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question7" data-option="optionA">沒在洗的</button>
             <button class="vote" data-question="question7" data-option="optionB">頭</button>
             <button class="vote" data-question="question7" data-option="optionC">身體</button>
             <button class="vote" data-question="question7" data-option="optionD">先上廁所</button>
             <div>
-                <p>沒在洗的: <span id="countQ7A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>頭: <span id="countQ7B">0</span></p> <!-- 顯示選項 B 的票數 -->
-                <p>身體: <span id="countQ7C">0</span></p> <!-- 顯示選項 C 的票數 -->
-                <p>先上廁所: <span id="countQ7D">0</span></p> <!-- 顯示選項 D 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>沒在洗的: <span id="countQ7A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>頭: <span id="countQ7B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
+                <p>身體: <span id="countQ7C">0</span></p>
+                <!-- 顯示選項 D 的票數 -->
+                <p>先上廁所: <span id="countQ7D">0</span></p>
             </div>
         </div>
     
         <div id="question8">
-            <h2>你都吃甚麼粽?</h2> <!-- 問題 8 標題 -->
+            <!-- 問題 8 標題 -->
+            <h2>你都吃甚麼粽?</h2>
+            <!-- 問題 8 的選項按鈕，點擊時會觸發投票 -->
             <button class="vote" data-question="question8" data-option="optionA">北部粽</button>
             <button class="vote" data-question="question8" data-option="optionB">南部粽</button>
             <button class="vote" data-question="question8" data-option="optionC">中部粽(海邊限定)</button>
             <div>
-                <p>北部粽: <span id="countQ8A">0</span></p> <!-- 顯示選項 A 的票數 -->
-                <p>南部粽: <span id="countQ8B">0</span></p> <!-- 顯示選項 B 的票數 -->
+                <!-- 顯示選項 A 的票數 -->
+                <p>北部粽: <span id="countQ8A">0</span></p>
+                <!-- 顯示選項 B 的票數 -->
+                <p>南部粽: <span id="countQ8B">0</span></p>
+                <!-- 顯示選項 C 的票數 -->
                 <p>中部粽(海邊限定): <span id="countQ8C">0</span></p>
             </div>
         </div>
     </div>
     
+    <!-- 歡迎信息區域 -->
     <div id="welcomeMsg"></div>
     
+    <!-- 引入 Socket.IO 客戶端腳本 -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        const socket = io();  // 初始化 Socket.IO 客戶端
         let username = ''; // 用來儲存使用者名稱
 
+        // 登錄函數，當用戶輸入名稱並點擊登錄時觸發
         function login() {
-        const inputUsername = document.getElementById('username').value;
-        if (inputUsername.trim() !== '') {
-            username = inputUsername.trim();
-            document.getElementById('login').style.display = 'none';
-            document.getElementById('voting').style.display = 'block';
-            document.getElementById('welcomeMsg').textContent = `Welcome, ${username}!`;
-            socket.emit('login', { username });
+        const inputUsername = document.getElementById('username').value;  // 獲取用戶輸入的名稱
+        if (inputUsername.trim() !== '') {  // 檢查用戶名稱是否有效
+            username = inputUsername.trim();  // 去除用戶名稱前後的空格
+            document.getElementById('login').style.display = 'none';  // 隱藏登錄區域
+            document.getElementById('voting').style.display = 'block';  // 顯示投票區域
+            document.getElementById('welcomeMsg').textContent = `Welcome, ${username}!`;  // 顯示歡迎信息
+            socket.emit('login', { username });  // 向伺服器發送登錄事件
         } else {
-            alert('Please enter a valid username.');
+            alert('Please enter a valid username.');  // 提示用戶輸入有效的名稱
         }
     }
 
+        // 獲取所有投票按鈕，並為每個按鈕添加點擊事件監聽器
         const voteButtons = document.querySelectorAll('.vote');
         voteButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const question = button.getAttribute('data-question');
-                const option = button.getAttribute('data-option');
-                if (username) {
-                    socket.emit('vote', { username, question, option });
-                    disableButtons(question); // 禁用其他相同問題的按鈕
+                const question = button.getAttribute('data-question');  // 獲取按鈕所屬的問題
+                const option = button.getAttribute('data-option');  // 獲取按鈕的選項
+                if (username) {  // 檢查用戶是否已登錄
+                    socket.emit('vote', { username, question, option });  // 向伺服器發送投票事件
+                    disableButtons(question);  // 禁用相同問題的其他按鈕
                 } else {
-                    alert('Please login first.');
+                    alert('Please login first.');  // 提示用戶先登錄
                 }
             });
         });
 
-        /*const voteButtons = document.querySelectorAll('.vote');
-        const countQ1A = document.getElementById('countQ1A');
-        const countQ1B = document.getElementById('countQ1B');
-        const countQ1C = document.getElementById('countQ1C');
-
-        const countQ2A = document.getElementById('countQ2A');
-        const countQ2B = document.getElementById('countQ2B');
-        const countQ2C = document.getElementById('countQ2C');
-
-        const countQ3A = document.getElementById('countQ3A');
-        const countQ3B = document.getElementById('countQ3B');
-        const countQ3C = document.getElementById('countQ3C');
-
-        const countQ4A = document.getElementById('countQ4A');
-        const countQ4B = document.getElementById('countQ4B');
-        const countQ4C = document.getElementById('countQ4C');
-
-        const countQ5A = document.getElementById('countQ5A');
-        const countQ5B = document.getElementById('countQ5B');
-        const countQ5C = document.getElementById('countQ5C');
-
-        const countQ6A = document.getElementById('countQ6A');
-        const countQ6B = document.getElementById('countQ6B');
-        const countQ6C = document.getElementById('countQ6C');
-
-        const countQ7A = document.getElementById('countQ7A');
-        const countQ7B = document.getElementById('countQ7B');
-        const countQ7C = document.getElementById('countQ7C');
-        const countQ7D = document.getElementById('countQ7D');
-
-        const countQ8A = document.getElementById('countQ8A');
-        const countQ8B = document.getElementById('countQ8B');
-        const countQ8C = document.getElementById('countQ8C');
-
-        voteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const question = button.getAttribute('data-question');
-                const option = button.getAttribute('data-option');
-                socket.emit('vote', { question, option });
-            });
-        });*/
-
+        // 當收到伺服器發送的更新票數事件時更新頁面
         socket.on('updateVotes', (votes) => {
+            // 更新每個選項的票數顯示
             countQ1A.textContent = votes.question1.optionA;
             countQ1B.textContent = votes.question1.optionB;
             countQ1C.textContent = votes.question1.optionC;
@@ -230,10 +243,12 @@
             countQ8C.textContent = votes.question8.optionC;
 
         });
+
+        // 禁用某個問題的所有按鈕
         function disableButtons(question) {
             const buttons = document.querySelectorAll(`.vote[data-question='${question}']`);
             buttons.forEach(btn => {
-                btn.disabled = true;
+                btn.disabled = true;  // 禁用按鈕
             });
         }
     </script>

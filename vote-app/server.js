@@ -20,8 +20,6 @@ let votes = { // 初始化一個投票結果的物件
     question6: { optionA: 0, optionB: 0, optionC: 0 },
     question7: { optionA: 0, optionB: 0, optionC: 0, optionD: 0 },
     question8: { optionA: 0, optionB: 0, optionC: 0 },
-    question9: { optionA: 0, optionB: 0, optionC: 0 },
-    question10: { optionA: 0, optionB: 0, optionC: 0, optionD: 0, optionE: 0, optionF: 0, optionG: 0 }
 };
 
 // 當有客戶端連接時
@@ -50,3 +48,5 @@ const PORT = process.env.PORT || 3000; // 設定伺服器的端口號，使用�
 server.listen(PORT, () => { // 開始監聽指定端口
     console.log(`Server running on port ${PORT}`); // 在控制台輸出伺服器運行的端口號
 });
+
+

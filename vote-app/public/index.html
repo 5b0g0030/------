@@ -107,3 +107,91 @@
             <p>北部粽: <span id="countQ8A">0</span></p> <!-- 顯示選項 A 的票數 -->
             <p>南部粽: <span id="countQ8B">0</span></p> <!-- 顯示選項 B 的票數 -->
             <p>中部粽(海邊限定): <span id="countQ8C">0</span></p>
+        </div>
+    </div>
+    
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        const voteButtons = document.querySelectorAll('.vote');
+        const countQ1A = document.getElementById('countQ1A');
+        const countQ1B = document.getElementById('countQ1B');
+        const countQ1C = document.getElementById('countQ1C');
+
+        const countQ2A = document.getElementById('countQ2A');
+        const countQ2B = document.getElementById('countQ2B');
+        const countQ2C = document.getElementById('countQ2C');
+
+        const countQ3A = document.getElementById('countQ3A');
+        const countQ3B = document.getElementById('countQ3B');
+        const countQ3C = document.getElementById('countQ3C');
+
+        const countQ4A = document.getElementById('countQ4A');
+        const countQ4B = document.getElementById('countQ4B');
+        const countQ4C = document.getElementById('countQ4C');
+
+        const countQ5A = document.getElementById('countQ5A');
+        const countQ5B = document.getElementById('countQ5B');
+        const countQ5C = document.getElementById('countQ5C');
+
+        const countQ6A = document.getElementById('countQ6A');
+        const countQ6B = document.getElementById('countQ6B');
+        const countQ6C = document.getElementById('countQ6C');
+
+        const countQ7A = document.getElementById('countQ7A');
+        const countQ7B = document.getElementById('countQ7B');
+        const countQ7C = document.getElementById('countQ7C');
+        const countQ7D = document.getElementById('countQ7D');
+
+        const countQ8A = document.getElementById('countQ8A');
+        const countQ8B = document.getElementById('countQ8B');
+        const countQ8C = document.getElementById('countQ8C');
+
+        voteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const question = button.getAttribute('data-question');
+                const option = button.getAttribute('data-option');
+                socket.emit('vote', { question, option });
+            });
+        });
+
+        socket.on('updateVotes', (votes) => {
+            countQ1A.textContent = votes.question1.optionA;
+            countQ1B.textContent = votes.question1.optionB;
+            countQ1C.textContent = votes.question1.optionC;
+
+            countQ2A.textContent = votes.question2.optionA;
+            countQ2B.textContent = votes.question2.optionB;
+            countQ2C.textContent = votes.question2.optionC;
+
+            countQ3A.textContent = votes.question3.optionA;
+            countQ3B.textContent = votes.question3.optionB;
+            countQ3C.textContent = votes.question3.optionC;
+
+            countQ4A.textContent = votes.question4.optionA;
+            countQ4B.textContent = votes.question4.optionB;
+            countQ4C.textContent = votes.question4.optionC;
+
+            countQ5A.textContent = votes.question5.optionA;
+            countQ5B.textContent = votes.question5.optionB;
+            countQ5C.textContent = votes.question5.optionC;
+
+            countQ6A.textContent = votes.question6.optionA;
+            countQ6B.textContent = votes.question6.optionB;
+            countQ6C.textContent = votes.question6.optionC;
+
+            countQ7A.textContent = votes.question7.optionA;
+            countQ7B.textContent = votes.question7.optionB;
+            countQ7C.textContent = votes.question7.optionC;
+            countQ7C.textContent = votes.question7.optionD;
+
+            countQ8A.textContent = votes.question8.optionA;
+            countQ8B.textContent = votes.question8.optionB;
+            countQ8C.textContent = votes.question8.optionC;
+
+        });
+    </script>
+</body>
+</html>
